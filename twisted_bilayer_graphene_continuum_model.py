@@ -18,7 +18,7 @@ def get_basic_params(latt_vec_unrott, latt_vec_rott, latt_vec_moire, tau_Xs_unro
     return 
      (1) BZ cornors, reciprocal lattice vectors of unrott, rott and moire systems
      (2) coupling parameters:
-         a, coupling lattice vectors [g1c, g2c]
+         a, coupling lattice vectors [g1c, g2c] gic = bi - Rbi
          b, three most strongest coupling vectors gci (i=0,1,2) makes 
             k2 - k1 = gci
             gci = G1i - RG1i
@@ -416,10 +416,10 @@ def plot_band(eig_f='EIGEN.npz', show=True, ylim=[-2,2]):
 
     
 if __name__=='__main__':
-    k_cut = 1
+    k_cut = 0.2
     cm = ContinummModel()
     cm.make_structure(p=1, q=61)
-    cm._get_Bloch_basis(0.2)
+    cm._get_Bloch_basis(k_cut)
     kpath = special_ks(cm)
     kpts, ids_node = ks_path_sampling(kpath, nk=100)
     labels = ['A', 'B', 'C', 'D', 'A']
